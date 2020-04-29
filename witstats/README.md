@@ -24,7 +24,7 @@ The monitoring dashboard is opensourced on [GitHub][ethstats-dashboard]
 
 To cover our [wishlist](WishList.md) we first need to :
 
-* check what is already available in Witnet Wallet Server to adapt EthStats client app into WitStats client app by modifying the API requests sent to the blockchain node to get monitoring data
+* check what is already available in [Witnet Wallet Server][witnet-wallet] to adapt EthStats client app into WitStats client app by modifying the API requests sent to the blockchain node to get monitoring data
 
 * select first the monitoring data which are already sent by the client app to the server app
 
@@ -35,3 +35,4 @@ To cover our [wishlist](WishList.md) we first need to :
 [ethstats-server]: https://github.com/Alethio/ethstats-network-server
 [ethstats-dashboard]: https://github.com/Alethio/ethstats-network-dashboard
 [wishlist]: https://github.com/witnet/witnet-operator-tools/raw/witstats-first/witstats/
+[witnet-wallet]: https://github.com/witnet/sheikah#witnet-wallet
