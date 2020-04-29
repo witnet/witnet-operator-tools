@@ -1,42 +1,51 @@
 # What we wish to monitor
 
 Blocks:
-- Block number
-- Block transactions
-- Block reward
-
-Mining:
-- Last block miners
-- Top miners (maybe could go to the list)
-- Newcomer mining probability
+- Last block number and hash
+- Current block reward
 
 Transactions:
-- Transaction number per block
-- Transaction per block and per type
-- "Fees" spending
+- Count of transactions inside last block
+- Count of transactions inside last block discriminated per type
+
+Mining:
+- Miner of the last block
+- Total miner fee in last block
+- ~~Newcomer mining probability~~
+- ~~Halving countdown~~
 
 Reputation:
 - Reputation Set graph (x: identity by highest REP, y: reputation)
-- Alpha clock: witnessing acts per block
-- Lying witnessing acts
-- Total issued reputation
+- Alpha clock:
+    - current alpha clock height (total number of reveal transactions that ever existed)
+    - witnessing acts in last block (count of reveal transactions inside last block)
+- Number of lying witnessing acts in the last block
+- ~~Total issued reputation~~
 
-Collaterals:
-- Total collateralized now
-- Total collateralized history
+~~Collaterals:~~
+- ~~Total collateralized now~~
+- ~~Total collateralized history~~
 
 Extras:
 - Map with IP geo-location
-- Mempool (to be discussed if it makes sense)
+- ~~Mempool (to be discussed if it makes sense)~~
 
-Main node list (similar to ethstats):
-- Address (pkh identity)
-- Witnet version
+**Main identity list** (sortable by any field):
+- PKH (identity)
 - Is Active (ARS membership)
 - Current reputation
-- Mined blocks
-- Current collateralized value
+- Count of mined blocks
+- ~~Current collateralized value~~
+- ~~Timestamp of last data request reveal~~
 
+~~**Node list (more similar to ethstats)**~~
+- ~~IP address~~
+- ~~Witnet agent~~
+- ~~Reported NTP time~~
+- ~~Capabilities (full-node)~~
+- ~~Blockchain height~~
+- ~~Last block hash~~
+- ~~Network latency (ping from cli to server)~~
 
-If we adopt BLS+GRANDPA:
-- Fork visualizer
+~~If we adopt BLS+GRANDPA:~~
+- ~~Fork visualizer~~
