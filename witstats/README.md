@@ -19,6 +19,6 @@ The server app is opensourced on [GitHub][ethstats-server]
 The monitoring dashboard is opensourced on [GitHub][ethstats-dashboard]
 
 [ethstats-guide]: https://medium.com/alethio/a-guide-to-deploying-alethios-free-open-source-products-18216617722e
-[ethstats-cli]: [https://github.com/Alethio/ethstats-cli]
-[ethstats-server]: [https://github.com/Alethio/ethstats-network-server]
-[ethstats-dashboard]: [https://github.com/Alethio/ethstats-network-dashboard]
+[ethstats-cli]: https://github.com/Alethio/ethstats-cli
+[ethstats-server]: https://github.com/Alethio/ethstats-network-server
+[ethstats-dashboard]: https://github.com/Alethio/ethstats-network-dashboard
