@@ -22,6 +22,7 @@ URL="https://github.com/witnet/witnet-rust/releases/download/$VERSION/witnet-$VE
 
 FILENAME="$VERSION.tar.gz"
 FOLDERNAME="/home/witnet/$COMPONENT"
+mkdir -p ${FOLDERNAME}
 
 echo "Downloading 'witnet-$VERSION-$TRIPLET.tar.gz'. It may take a few seconds..."
 curl -L $URL -o /tmp/${FILENAME} --cacert /etc/ssl/certs/ca-certificates.crt >/dev/null 2>&1 &&
