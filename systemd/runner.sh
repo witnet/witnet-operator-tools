@@ -44,6 +44,6 @@ rm -rf ${FOLDERNAME}.old
 echo "Finished restore of saved configuration in ${FOLDERNAME}"
 
 echo "Your newly installed version is :"
-./${FOLDERNAME}/witnet ${COMPONENT} ${MODE} --version
+${FOLDERNAME}/witnet ${COMPONENT} ${MODE} --version
 echo "to start it run as privileged user: sudo systemctl start witnet"
 echo "Finished installing a witnet-rust $COMPONENT on version $VERSION for $TRIPLET"
