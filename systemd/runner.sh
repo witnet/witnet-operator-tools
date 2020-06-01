@@ -1,12 +1,10 @@
 #!/bin/bash
-
-#VERSION=$1
+set -e
+set -u
+#set -x
 VERSION="latest"
-#COMPONENT=$2
 COMPONENT="node"
 MODE="server"
-shift
-shift
 
 if [[ "$VERSION" == "latest" ]]; then
     VERSION=`curl https://github.com/witnet/witnet-rust/releases/latest --cacert /etc/ssl/certs/ca-certificates.crt 2>/dev/null | egrep -o "[0-9|\.]{5}(-rc[0-9]+)?"`
@@ -22,17 +20,31 @@ URL="https://github.com/witnet/witnet-rust/releases/download/$VERSION/witnet-$VE
 
 FILENAME="$VERSION.tar.gz"
 FOLDERNAME="/home/witnet/$COMPONENT"
-mkdir -p ${FOLDERNAME}
+mkdir -p ${FOLDERNAME}/.witnet
+touch ${FOLDERNAME}/witnet.toml
 
 echo "Downloading 'witnet-$VERSION-$TRIPLET.tar.gz'. It may take a few seconds..."
-curl -L $URL -o /tmp/${FILENAME} --cacert /etc/ssl/certs/ca-certificates.crt >/dev/null 2>&1 &&
-mv ${FOLDERNAME} ${FOLDERNAME}.old &&
-mkdir ${FOLDERNAME} &&
-tar -zxf /tmp/${FILENAME} --directory ${FOLDERNAME} >/dev/null 2>&1 &&
-chmod +x $FOLDERNAME/witnet &&
-mv ${FOLDERNAME}.old/.witnet ${FOLDERNAME}/ &&
-mv ${FOLDERNAME}.old/witnet.toml ${FOLDERNAME}/witnet.toml.old &&
-rm -rf ${FOLDERNAME}.old &&
-./${FOLDERNAME}/witnet ${COMPONENT} ${MODE} --version &&
-echo sudo systemctl start witnet ||
-echo "Error downloading and installing a witnet-rust $COMPONENT on version $VERSION for $TRIPLET"
+curl -L $URL -o /tmp/${FILENAME} --cacert /etc/ssl/certs/ca-certificates.crt
+echo "Finished download of witnet-rust $COMPONENT on version $VERSION for $TRIPLET"
+
+echo "Saving current configuration in ${FOLDERNAME}.old only during the install"
+mv ${FOLDERNAME} ${FOLDERNAME}.old
+
+echo "Extracting $COMPONENT version $VERSION for $TRIPLET in ${FOLDERNAME}..."
+mkdir ${FOLDERNAME}
+tar -zxf /tmp/${FILENAME} --directory ${FOLDERNAME}
+chmod +x $FOLDERNAME/witnet
+echo "Finished extraction of $COMPONENT version $VERSION for $TRIPLET in ${FOLDERNAME}"
+
+echo "Restoring saved configuration in ${FOLDERNAME}..."
+mv ${FOLDERNAME}.old/.witnet ${FOLDERNAME}/
+mv ${FOLDERNAME}.old/witnet.toml ${FOLDERNAME}/witnet.toml.old
+echo "Differences between old and new configurations in ${FOLDERNAME}..."
+diff ${FOLDERNAME}/witnet.toml*
+rm -rf ${FOLDERNAME}.old
+echo "Finished restore of saved configuration in ${FOLDERNAME}"
+
+echo "Your newly installed version is :"
+./${FOLDERNAME}/witnet ${COMPONENT} ${MODE} --version
+echo "to start it run as privileged user: sudo systemctl start witnet"
+echo "Finished installing a witnet-rust $COMPONENT on version $VERSION for $TRIPLET"
