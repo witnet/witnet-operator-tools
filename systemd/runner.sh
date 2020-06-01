@@ -39,8 +39,7 @@ echo "Finished extraction of $COMPONENT version $VERSION for $TRIPLET in ${FOLDE
 echo "Restoring saved configuration in ${FOLDERNAME}..."
 mv ${FOLDERNAME}.old/.witnet ${FOLDERNAME}/
 mv ${FOLDERNAME}.old/witnet.toml ${FOLDERNAME}/witnet.toml.old
-echo "Differences between old and new configurations in ${FOLDERNAME}..."
-diff ${FOLDERNAME}/witnet.toml*
+echo "to see differences between old and new configurations run: diff ${FOLDERNAME}/witnet.toml*"
 rm -rf ${FOLDERNAME}.old
 echo "Finished restore of saved configuration in ${FOLDERNAME}"
 
