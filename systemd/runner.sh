@@ -41,7 +41,6 @@ mv ${FOLDERNAME}.old/.witnet ${FOLDERNAME}/
 mv ${FOLDERNAME}.old/witnet.toml ${FOLDERNAME}/witnet.toml.old
 rm -rf ${FOLDERNAME}.old
 mv ${FOLDERNAME}/genesis_block.json ${FOLDERNAME}/.witnet/config/genesis_block.json
-mv ${FOLDERNAME}/witnet.toml ${FOLDERNAME}/.witnet/config/witnet.toml
 echo "Finished restore of saved configuration in ${FOLDERNAME}"
 
 echo "Your newly installed version is :"
