@@ -33,6 +33,12 @@ Querying the node witnet`n`.service
 ./witnet.sh run -c "node Reputation"
 ```
 
+#### Upgrading service to latest version
+Upgrading witnet`n`.service
+```
+./witnet.sh upgrade -s 1 -e 5
+```
+
 #### Options
 ```
     -h (print this message)
