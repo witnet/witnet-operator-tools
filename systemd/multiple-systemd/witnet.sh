@@ -83,12 +83,12 @@ startNode (){
     RPCPORT=$(( 21337 +$n*2 ))
     FOLDERNAME="$HOME/witnet$n"
     echo "Extracting $COMPONENT version $VERSION for $TRIPLET in ${FOLDERNAME}..."
-    mkdir ${FOLDERNAME}
+    set +e ; mkdir ${FOLDERNAME} ; set -e
     tar -zxf /tmp/${FILENAME} --directory ${FOLDERNAME}
     chmod +x $FOLDERNAME/witnet
     echo "Finished extraction of $COMPONENT version $VERSION for $TRIPLET in ${FOLDERNAME}"
     echo "Restoring saved configuration in ${FOLDERNAME}..."
-    mkdir -p ${FOLDERNAME}/.witnet
+    set +e; mkdir -p ${FOLDERNAME}/.witnet ; set -e
     sed -i "s#127.0.0.1:21338#127.0.0.1:$RPCPORT#g" ${FOLDERNAME}/witnet.toml
     sed -i "s#0.0.0.0:21337#0.0.0.0:$PORT#g" ${FOLDERNAME}/witnet.toml
     echo "Finished restore of saved configuration in ${FOLDERNAME}"
@@ -182,6 +182,14 @@ then
         PassPrint "Status of witnet$i.service"
         $SUDO systemctl status witnet$i.service | cat
     done
+elif [[ $RUN == "upgrade" ]] 
+then
+    for i in $(seq $START $END)
+    do
+        PassPrint "stopping witnet$i.service"
+        $SUDO systemctl stop witnet$i.service
+    done
+    setup
 else
     printHelp
 fi
