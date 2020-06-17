@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-VERSION="latest"
 COMPONENT="node"
 MODE="server"
+VERSION="latest"
 RED='\x1B[1;31m'
 INFO='\x1B[1;36m'
 OKGREEN='\x1B[1;32m'
@@ -79,16 +79,16 @@ END=${END:-$START}
 
 startNode (){
     n=$1
-    PORT=$(( 21336 + $n*2 ))
-    RPCPORT=$(( 21337 +$n*2 ))
+    PORT=$(( 21335 + $n*2 ))
+    RPCPORT=$(( 21336 +$n*2 ))
     FOLDERNAME="$HOME/witnet$n"
     echo "Extracting $COMPONENT version $VERSION for $TRIPLET in ${FOLDERNAME}..."
-    set +e ; mkdir ${FOLDERNAME} ; set -e
+    mkdir -p ${FOLDERNAME}/.witnet/config
     tar -zxf /tmp/${FILENAME} --directory ${FOLDERNAME}
+    mv ${FOLDERNAME}/genesis_block.json ${FOLDERNAME}/.witnet/config/genesis_block.json
     chmod +x $FOLDERNAME/witnet
     echo "Finished extraction of $COMPONENT version $VERSION for $TRIPLET in ${FOLDERNAME}"
     echo "Restoring saved configuration in ${FOLDERNAME}..."
-    set +e; mkdir -p ${FOLDERNAME}/.witnet ; set -e
     sed -i "s#127.0.0.1:21338#127.0.0.1:$RPCPORT#g" ${FOLDERNAME}/witnet.toml
     sed -i "s#0.0.0.0:21337#0.0.0.0:$PORT#g" ${FOLDERNAME}/witnet.toml
     echo "Finished restore of saved configuration in ${FOLDERNAME}"
