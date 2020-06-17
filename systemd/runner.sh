@@ -20,7 +20,7 @@ URL="https://github.com/witnet/witnet-rust/releases/download/$VERSION/witnet-$VE
 
 FILENAME="$VERSION.tar.gz"
 FOLDERNAME="/home/witnet/$COMPONENT"
-mkdir -p ${FOLDERNAME}/.witnet
+mkdir -p ${FOLDERNAME}/.witnet/config
 touch ${FOLDERNAME}/witnet.toml
 
 echo "Downloading 'witnet-$VERSION-$TRIPLET.tar.gz'. It may take a few seconds..."
@@ -40,6 +40,8 @@ echo "Restoring saved configuration in ${FOLDERNAME}..."
 mv ${FOLDERNAME}.old/.witnet ${FOLDERNAME}/
 mv ${FOLDERNAME}.old/witnet.toml ${FOLDERNAME}/witnet.toml.old
 rm -rf ${FOLDERNAME}.old
+mv ${FOLDERNAME}/genesis_block.json ${FOLDERNAME}/.witnet/config/genesis_block.json
+mv ${FOLDERNAME}/witnet.toml ${FOLDERNAME}/.witnet/config/witnet.toml
 echo "Finished restore of saved configuration in ${FOLDERNAME}"
 
 echo "Your newly installed version is :"
