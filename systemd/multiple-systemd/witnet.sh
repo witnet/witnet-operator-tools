@@ -124,13 +124,13 @@ setup(){
   prerequisites
 
   if [ "$VERSION" == "latest" ]; then
-    VERSION=`curl https://github.com/witnet/witnet-rust/releases/latest --cacert /etc/ssl/certs/ca-certificates.crt 2>/dev/null | egrep -o "[0-9|\.]{5}(-rc[0-9]+)?"`
+    VERSION=`curl -s https://api.github.com/repos/witnet/witnet-rust/releases/latest --cacert /etc/ssl/certs/ca-certificates.crt | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
   fi
   
   TRIPLET=`bash --version | head -1 | sed -En 's/^.*\ \((.+)-(.+)-(.+)\)$/\1-\2-\3/p'`
   
   if [[ "$TRIPLET" == *"linux"* ]]; then
-      TRIPLET=`echo $TRIPLET | awk -F'-' '{printf $1"-unknown-"$3"-"$4}'`
+      TRIPLET=`echo $TRIPLET | sed 's/pc/unknown/g'`
   fi
   URL="https://github.com/witnet/witnet-rust/releases/download/$VERSION/witnet-$VERSION-$TRIPLET.tar.gz"
   InfoPrint "Downloading 'witnet-$VERSION-$TRIPLET.tar.gz'. It may take a few seconds..."
