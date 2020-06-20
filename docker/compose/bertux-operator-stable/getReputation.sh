@@ -1,1 +1,1 @@
-docker-compose ps | grep node | cut -d' ' -f1 | parallel docker exec {} ./witnet node getReputation
+docker-compose ps -q | parallel docker exec {} ./witnet node getReputation

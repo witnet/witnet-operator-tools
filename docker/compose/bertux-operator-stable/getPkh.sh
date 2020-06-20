@@ -1,1 +1,1 @@
-docker-compose ps | grep node | cut -d' ' -f1 | parallel docker exec {} ./witnet node getPkh
+docker-compose ps -q | parallel docker exec {} ./witnet node getPkh
