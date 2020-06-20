@@ -27,6 +27,18 @@ Stopping witnet`n`.service
 ./witnet.sh stop -s 1 -e 5
 ```
 
+#### For checking the peers of every witnet instance.
+Querying the node witnet`n`.service
+```
+./witnet.sh run -c "node peers"
+```
+
+#### For checking the stats of every witnet instance.
+Querying the node witnet`n`.service
+```
+./witnet.sh run -c "node nodeStats"
+```
+
 #### For checking the reputation of every witnet instance.
 Querying the node witnet`n`.service
 ```
