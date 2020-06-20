@@ -16,4 +16,4 @@ for c in $CONTAINERS; do
     mv "$local_key_file" "$output_dir"
 done;
 
-tar -czf "${EXPORT_DIR}".tar "$EXPORT_DIR"
+tar -czf "${EXPORT_DIR}".tar "$EXPORT_DIR" && rm -rf "$EXPORT_DIR"
