@@ -27,10 +27,16 @@ Stopping witnet`n`.service
 ./witnet.sh stop -s 1 -e 5
 ```
 
-#### For checking the settings of any witnet instance.
+#### For checking the reputation of every witnet instance.
 Querying the node witnet`n`.service
 ```
-./witnet.sh run -c "node Reputation"
+./witnet.sh run -c "node reputation"
+```
+
+#### For checking the version of every witnet instance.
+Querying the node witnet`n`.service
+```
+./witnet.sh run -c "node --version"
 ```
 
 #### Upgrading service to latest version
