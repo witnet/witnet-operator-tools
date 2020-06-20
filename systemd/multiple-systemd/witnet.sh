@@ -114,7 +114,7 @@ startNode (){
     WantedBy=multi-user.target
     Alias=witnet$n.service
     " > /tmp/witnet$n.service
-    $SUDO mv /tmp/witnet$n.service /etc/systemd/system/witnet$n.service
+    $SUDO mv /tmp/witnet$n.service /lib/systemd/system/witnet$n.service
     $SUDO systemctl daemon-reload
     $SUDO systemctl start witnet$n.service
     $SUDO systemctl enable witnet$n.service
