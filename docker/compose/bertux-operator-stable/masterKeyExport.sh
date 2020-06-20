@@ -17,4 +17,3 @@ for c in $CONTAINERS; do
 done;
 
 tar -czf "${EXPORT_DIR}".tar "$EXPORT_DIR"
-
