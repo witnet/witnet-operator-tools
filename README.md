@@ -80,3 +80,32 @@ Data Request mining stats:
 [2020-05-21T13:37:20Z DEBUG witnet_data_structures] Set environment to testnet
 [2020-05-21T13:37:20Z INFO  witnet::cli::node::json_rpc_client] Connecting to JSON-RPC server at 127.0.0.1:21338
 ```
+### Export the private keys of your nodes in an archive (procedure for 5 nodes docker-compose file)
+- by running :
+```
+cd witnet-operator-tools/docker/compose/bertux-operator-5
+./masterKeyExport.sh
+```
+- you should see :
+```
+[2020-05-21T13:37:20Z INFO  witnet::cli::node::json_rpc_client] Connecting to JSON-RPC server at 127.0.0.1:21338
+[2020-05-21T13:37:20Z INFO  witnet::cli::node::json_rpc_client] Connecting to JSON-RPC server at 127.0.0.1:21338
+[2020-05-21T13:37:20Z INFO  witnet::cli::node::json_rpc_client] Connecting to JSON-RPC server at 127.0.0.1:21338
+[2020-05-21T13:37:20Z INFO  witnet::cli::node::json_rpc_client] Connecting to JSON-RPC server at 127.0.0.1:21338
+[2020-05-21T13:37:20Z INFO  witnet::cli::node::json_rpc_client] Connecting to JSON-RPC server at 127.0.0.1:21338
+```
+- an archive will be created as `master_keys_20200521133720.tar` (the last part is the current date)
+- it will contain all the private keys, as per this structure :
+```bash
+.
+├── node
+│   └── private_key_twit1xxxxxxx.txt
+├── node2
+│   └── private_key_twit1xxxxxxx.txt
+├── node3
+│   └── private_key_twit1xxxxxxx.txt
+├── node4
+│   └── private_key_twit1xxxxxxx.txt
+└── node5
+    └── private_key_twit1xxxxxxx.txt
+```
