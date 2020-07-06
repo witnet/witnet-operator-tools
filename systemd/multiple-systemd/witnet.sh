@@ -117,7 +117,10 @@ startNode (){
     $SUDO mv /tmp/witnet$n.service /lib/systemd/system/witnet$n.service
     $SUDO systemctl daemon-reload
     $SUDO systemctl start witnet$n.service
-    $SUDO systemctl enable witnet$n.service
+    if [[ ! -f "/etc/systemd/system/witnet$n.service" ]]
+    then
+        $SUDO systemctl enable witnet$n.service
+    fi
 }
 
 setup(){
