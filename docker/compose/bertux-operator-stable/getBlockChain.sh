@@ -1,1 +1,1 @@
-docker-compose ps -q | parallel docker exec {} ./witnet node blockchain
+docker-compose ps -q | parallel docker exec {} witnet node blockchain

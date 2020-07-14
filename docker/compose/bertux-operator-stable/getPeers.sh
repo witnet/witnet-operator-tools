@@ -1,1 +1,1 @@
-docker-compose ps -q | parallel docker exec {} ./witnet node getPeers
+docker-compose ps -q | parallel docker exec {} witnet node getPeers

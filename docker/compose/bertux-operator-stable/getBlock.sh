@@ -1,1 +1,1 @@
-docker-compose ps -q | parallel docker exec {} ./witnet node block $1
+docker-compose ps -q | parallel docker exec {} witnet node block $1
