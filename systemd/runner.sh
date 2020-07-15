@@ -5,6 +5,7 @@ set -u
 VERSION="latest"
 COMPONENT="node"
 MODE="server"
+TOOLS=$PWD
 
 if [[ "$VERSION" == "latest" ]]; then
     VERSION=`curl https://github.com/witnet/witnet-rust/releases/latest --cacert /etc/ssl/certs/ca-certificates.crt 2>/dev/null | egrep -o "[0-9|\.]{5}(-\w+)?"`
@@ -41,7 +42,8 @@ mv ${FOLDERNAME}.old/.witnet ${FOLDERNAME}/
 mv ${FOLDERNAME}.old/witnet.toml ${FOLDERNAME}/witnet.toml.old
 rm -rf ${FOLDERNAME}.old
 mv ${FOLDERNAME}/genesis_block.json ${FOLDERNAME}/.witnet/config/genesis_block.json
-./ipconfig.sh
+cd ${FOLDERNAME}
+${TOOLS}/systemd/ipconfig.sh
 echo "Finished restore of saved configuration in ${FOLDERNAME}"
 
 echo "Your newly installed version is :"
