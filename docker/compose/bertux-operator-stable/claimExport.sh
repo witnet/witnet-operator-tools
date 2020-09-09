@@ -20,9 +20,9 @@ fi
 ## VARIABLES SETTINGS
 WIT_ID=$1
 CONTAINERS=$(docker-compose ps -q)
-EXPORT_DIR="claim_$(date +'%Y_%m_%d_%H_%M_%S')"
+EXPORT_DIR="claim_$WIT_ID"
 
-mkdir $EXPORT_DIR
+mkdir -p $EXPORT_DIR
 
 for c in $CONTAINERS; do
     compose_service_name=$(docker inspect $c --format '{{ index .Config.Labels "com.docker.compose.service" }}')
@@ -31,8 +31,9 @@ for c in $CONTAINERS; do
     local_key_file="${storage_path}/${docker_key_file#*/*/}"
     output_dir="${EXPORT_DIR}/${compose_service_name}"
 
-    mkdir $output_dir
-    mv "$local_key_file" "$output_dir"
+    mkdir -p $output_dir
+    mv -f "$local_key_file" "$output_dir"
 done;
 
+rm -f "${EXPORT_DIR}".tar.gz
 tar -czf "${EXPORT_DIR}".tar.gz "$EXPORT_DIR"
