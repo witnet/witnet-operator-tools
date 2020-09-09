@@ -20,7 +20,7 @@ fi
 ## VARIABLES SETTINGS
 WIT_ID=$1
 CONTAINERS=$(docker-compose ps -q)
-EXPORT_DIR="claim_$WIT_ID"
+EXPORT_DIR="claim-$WIT_ID"
 
 mkdir -p $EXPORT_DIR
 
